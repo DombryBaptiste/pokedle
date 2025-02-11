@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { PokemonService } from './core/services/pokemon.service';
 import { UtilsService } from './core/services/utils.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
