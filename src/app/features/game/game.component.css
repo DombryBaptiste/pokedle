@@ -1,0 +1,12 @@
+.img-pkm {
+  width: 40px;
+  height: 40px;
+}
+
+.options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
