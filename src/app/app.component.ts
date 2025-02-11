@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { PokemonService } from './services/pokemon.service';
-import { UtilsService } from './services/utils.service';
+import { PokemonService } from './core/services/pokemon.service';
+import { UtilsService } from './core/services/utils.service';
 
 @Component({
   selector: 'app-root',
