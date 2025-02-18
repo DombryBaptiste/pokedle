@@ -1,32 +1,62 @@
-<div class="pokemon-list">
-  <div class="pokemon-trait">
-    <img [src]="pokemon.image">
+@if (pokemonsSelected.length > 0) {
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Pokémon</th>
+          <th scope="col">Type 1</th>
+          <th scope="col">Type 2</th>
+          <th scope="col">Habitat</th>
+          <th scope="col">Couleur</th>
+          <th scope="col">Stade évolution</th>
+          <th scope="col">Taille</th>
+          <th scope="col">Poids</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(pokemon of pokemonsSelected; track pokemon.id) {
+          <tr>
+            <td>
+              <img [src]="pokemon.image">
+            </td>
+            <td>
+              <div class="pokemon-trait"  [ngClass]="getColor('type1', pokemon)">
+                <span>{{ pokemon.type1 }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="getColor('type2', pokemon)">
+                <span>{{ pokemon.type2}}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="getColor('location', pokemon)">
+                <span>{{ pokemon.location }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="getColor('color', pokemon)">
+                <span>{{ pokemon.color }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="[getColor('evolutionStage', pokemon), getArrowClass('evolutionStage', pokemon)]">
+                <span>{{ pokemon.evolutionStage }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="[getColor('height', pokemon), getArrowClass('height', pokemon)]">
+                <span>{{ pokemon.height }}</span>
+              </div>
+            </td>
+            <td>
+              <div class="pokemon-trait" [ngClass]="[getColor('weight', pokemon), getArrowClass('weight', pokemon)]">
+                <span>{{ pokemon.weight }}</span>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
-  <div class="pokemon-trait"  [class]="getColor('type1')">
-    <span>{{ pokemon.type1 }}</span>
-  </div>
-  @if(pokemon.type2) {
-    <div class="pokemon-trait" [class]="getColor('type2')">
-      <span>{{ pokemon.type2}}</span>
-    </div>
-  } @else {
-    <div class="pokemon-trait green" >
-      <span>Aucun</span>
-    </div>
-  }
-  <div class="pokemon-trait" [class]="getColor('location')">
-    <span>{{ pokemon.location }}</span>
-  </div>
-  <div class="pokemon-trait" [class]="getColor('color')">
-    <span>{{ pokemon.color }}</span>
-  </div>
-  <div class="pokemon-trait" [ngClass]="[getColor('evolutionStage'), getArrowClass('evolutionStage')]">
-    <span>{{ pokemon.evolutionStage }}</span>
-  </div>
-  <div class="pokemon-trait" [ngClass]="[getColor('height'), getArrowClass('height')]">
-    <span>{{ pokemon.height }}</span>
-  </div>
-  <div class="pokemon-trait" [ngClass]="[getColor('weight'), getArrowClass('weight')]">
-    <span>{{ pokemon.weight }}</span>
-  </div>
-</div>
+}

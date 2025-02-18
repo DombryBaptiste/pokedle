@@ -19,9 +19,7 @@
     </mat-form-field>
   </div>
   <div class="pokemon-details-container">
-    @for(pokemon of listPokemonSelected; track pokemon.id) {
-      <app-pokemon-detail class="pokemon-detail" [pokemon]="pokemon"></app-pokemon-detail>
-    }
+    <app-pokemon-detail [pokemonsSelected]="listPokemonSelected"></app-pokemon-detail>
   </div>
 </div>
 

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class PokemonDetailComponent implements OnInit {
 
-  @Input() pokemon!: PokemonDetails;
+  @Input() pokemonsSelected!: PokemonDetails[];
   pokemonToGuess!: WritableSignal<PokemonDetails>;
 
   constructor(private readonly pokemonService: PokemonService) { }
@@ -20,17 +20,17 @@ export class PokemonDetailComponent implements OnInit {
     this.pokemonToGuess = this.pokemonService.getPokemonToGuess();
   }
 
-  getArrowClass(key: keyof PokemonDetails): string {
-    if(this.pokemon[key] > this.pokemonToGuess()[key]) {
+  getArrowClass(key: keyof PokemonDetails, pokemon: PokemonDetails): string {
+    if(pokemon[key] > this.pokemonToGuess()[key]) {
       return "down";
-    } else if(this.pokemon[key] < this.pokemonToGuess()[key]) {
+    } else if(pokemon[key] < this.pokemonToGuess()[key]) {
       return "up";
     }
     return "";
   }
 
-  getColor(key: keyof PokemonDetails): string {
-    if(this.pokemon[key] === this.pokemonToGuess()[key]) {
+  getColor(key: keyof PokemonDetails, pokemon: PokemonDetails): string {
+    if(pokemon[key] === this.pokemonToGuess()[key]) {
       return "green"
     } else {
       return "red"

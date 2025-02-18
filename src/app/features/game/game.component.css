@@ -28,8 +28,3 @@ mat-form-field {
   width: 20%;
 }
 
-.pokemon-details-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}

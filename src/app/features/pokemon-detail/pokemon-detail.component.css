@@ -49,3 +49,29 @@
 .orange {
   background-color: #f3a545;
 }
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 12px;
+  table-layout: fixed;
+}
+
+th {
+  width: 102px;
+  padding-bottom: 12px;
+  position: relative;
+}
+
+th::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 0;
+  border-bottom: solid 2px black;
+}
+
+.table-container {
+  display: flex;
+  justify-content: center;
+}
