@@ -46,12 +46,9 @@ export class GameComponent implements OnInit {
     if(!pokemonSelected) {
       throw new Error('Le pokémon est introuvable');
     }
-    console.log(pokemonSelected);
     this.pokemonService.getPokemonById(pokemonSelected.id).subscribe({
       next: (pokemon: PokemonDetails) => {
-        pokemon.name = pokemonSelected.name
         this.listPokemonSelected.push(pokemon);
-        console.log(this.listPokemonSelected);
       }
     })
   }
