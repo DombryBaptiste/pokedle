@@ -50,7 +50,8 @@ export class GameComponent implements OnInit {
       next: (pokemon: PokemonDetails) => {
         this.listPokemonSelected.push(pokemon);
       }
-    })
+    });
+    this.listPokemon = this.listPokemon.filter(pokemon => pokemon.id !== pokemonSelected.id);
   }
 
   private filterPokemons(value: string): Pokemon[] {
