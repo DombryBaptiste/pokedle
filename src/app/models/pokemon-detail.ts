@@ -3,7 +3,8 @@ import { PokemonType } from "./pokemon-type";
 export interface PokemonDetails {
   name: string;
   id: number;
-  types: PokemonType[];
+  type1: string;
+  type2: string;
   weight: number;
   height: number;
   color: string;

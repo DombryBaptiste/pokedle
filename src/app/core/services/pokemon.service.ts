@@ -92,10 +92,8 @@ export class PokemonService {
             return {
               id: details.id,
               name: species.names.find((name: any) => name.language.name === 'fr').name,
-              types: details.types.map((t: any) => ({
-                slot: t.slot,
-                name: this.utilsService.translateType(t.type.name)
-              })),
+              type1: this.utilsService.translateType(details.types[0].type.name),
+              type2: this.utilsService.translateType(details.types[1] ? details.types[1].type.name : "Aucun"),
               weight: details.weight / 10,
               height: details.height / 10,
               color: this.utilsService.translateColor(species.color.name),

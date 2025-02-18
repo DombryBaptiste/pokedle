@@ -2,12 +2,12 @@
   <div class="pokemon-trait">
     <img [src]="pokemon.image">
   </div>
-  <div class="pokemon-trait">
-    <span>{{ pokemon.types[0].name }}</span>
+  <div class="pokemon-trait"  [class]="getColor('type1')">
+    <span>{{ pokemon.type1 }}</span>
   </div>
-  @if(pokemon.types[1]) {
-    <div class="pokemon-trait" >
-      <span>{{ pokemon.types[1].name }}</span>
+  @if(pokemon.type2) {
+    <div class="pokemon-trait" [class]="getColor('type2')">
+      <span>{{ pokemon.type2}}</span>
     </div>
   } @else {
     <div class="pokemon-trait green" >
