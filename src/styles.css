@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: 'VCR OSD Mono';
+  src: url('/assets/fonts/VCR_OSD_MONO_1.001.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: 'VCR OSD Mono', monospace; font-weight: bold; }
