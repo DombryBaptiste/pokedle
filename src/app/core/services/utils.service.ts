@@ -60,4 +60,25 @@ export class UtilsService {
 
     return habitatTranslation[habitat] || habitat
   }
+
+  /**
+   * Traduit le type d'un pokemon de l'anglais vers le francais.
+   *
+   * @param {string} type - Le type en anglais.
+   * @returns {string} Le type traduit en francais.
+   *
+   * @exemple
+   * const type = utilsService.translateType('bug');
+   * console.log(type); // "Insecte"
+   */
+  translateType(type: string): string {
+    const typeTranslation: { [key: string]: string }= {
+      normal: "Normal", fighting: "Combat", flying: "Vol", poison: "Poison",
+      ground: "Sol", rock: "Roche", bug: "Insecte", ghost: "Spectre",
+      steel: "Acier", fire: "Feu", water: "Eau", grass: "Plante", electric: "Electrik",
+      psychic: "Psy", ice: "Glace", dragon: "Dragon", dark: "Ténèbres", fairy: "Fée"
+    }
+
+    return typeTranslation[type] || type;
+  }
 }
