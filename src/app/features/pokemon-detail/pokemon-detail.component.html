@@ -1,0 +1,32 @@
+<div class="pokemon-list">
+  <div class="pokemon-trait">
+    <img [src]="pokemon.image">
+  </div>
+  <div class="pokemon-trait">
+    <span>{{ pokemon.types[0].name }}</span>
+  </div>
+  @if(pokemon.types[1]) {
+    <div class="pokemon-trait" >
+      <span>{{ pokemon.types[1].name }}</span>
+    </div>
+  } @else {
+    <div class="pokemon-trait green" >
+      <span>Aucun</span>
+    </div>
+  }
+  <div class="pokemon-trait" [class]="getColor('location')">
+    <span>{{ pokemon.location }}</span>
+  </div>
+  <div class="pokemon-trait" [class]="getColor('color')">
+    <span>{{ pokemon.color }}</span>
+  </div>
+  <div class="pokemon-trait" [ngClass]="[getColor('evolutionStage'), getArrowClass('evolutionStage')]">
+    <span>{{ pokemon.evolutionStage }}</span>
+  </div>
+  <div class="pokemon-trait" [ngClass]="[getColor('height'), getArrowClass('height')]">
+    <span>{{ pokemon.height }}</span>
+  </div>
+  <div class="pokemon-trait" [ngClass]="[getColor('weight'), getArrowClass('weight')]">
+    <span>{{ pokemon.weight }}</span>
+  </div>
+</div>

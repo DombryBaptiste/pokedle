@@ -5,7 +5,9 @@ export interface PokemonDetails {
   id: number;
   types: PokemonType[];
   weight: number;
+  height: number;
   color: string;
   location: string;
   evolutionStage: number;
+  image: string;
 }

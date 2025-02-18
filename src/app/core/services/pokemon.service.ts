@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { forkJoin, map, Observable, switchMap, tap } from 'rxjs';
 import { Pokemon } from '../../models/pokemon';
 import { PokemonDetails } from '../../models/pokemon-detail';
@@ -9,23 +9,41 @@ import { UtilsService } from './utils.service';
   providedIn: 'root'
 })
 export class PokemonService {
-  private readonly jsonUrl = '/assets/pokemons.json'
+  private readonly jsonUrl = '/assets/pokedex.json'
   private readonly pokeAPIBaseUrl = "https://pokeapi.co/api/v2"
 
-  private readonly pokemonNumber = signal(0);
+  private readonly pokemonToGuess: WritableSignal<PokemonDetails> = signal({} as PokemonDetails);
 
   constructor(private readonly http: HttpClient, private readonly utilsService: UtilsService) { }
 
-  getPokemonNumber(): number {
-    return this.pokemonNumber();
+  getPokemonList(min: number, max: number): Observable<Pokemon[]> {
+    return this.http.get<any[]>(this.jsonUrl).pipe(
+      map((pokemons) => {
+        return pokemons
+          .filter(pokemon => pokemon.id >= min && pokemon.id <= max)
+          .map(pokemon => ({
+            id: pokemon.id,
+            name: pokemon.name.french
+          }));
+      })
+    );
   }
 
-  getPokemonList(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(this.jsonUrl);
+
+  getPokemonToGuess(): WritableSignal<PokemonDetails> {
+    return this.pokemonToGuess;
   }
 
-  setPokemonNumber(number: number): void {
-    this.pokemonNumber.set(number);
+  setPokemonToGuess(pokemon: PokemonDetails): void {
+    this.pokemonToGuess.set(pokemon);
+  }
+
+  initPokemonToGuess(min: number, max: number): Observable<Pokemon> {
+    return this.getPokemonById(this.utilsService.getRandomNumber(min, max)).pipe(
+      tap((data) => {
+        this.setPokemonToGuess(data);
+      })
+    );
   }
 
   /**
@@ -56,6 +74,7 @@ export class PokemonService {
    *   "color": "Vert",
    *   "location": "Champs",
    *   "evolutionStage": 1
+   *   "image":
    * }
    * ```
   */
@@ -72,15 +91,17 @@ export class PokemonService {
 
             return {
               id: details.id,
-              name: details.name,
+              name: species.names.find((name: any) => name.language.name === 'fr').name,
               types: details.types.map((t: any) => ({
                 slot: t.slot,
-                name: t.type.name
+                name: this.utilsService.translateType(t.type.name)
               })),
               weight: details.weight / 10,
+              height: details.height / 10,
               color: this.utilsService.translateColor(species.color.name),
               location: this.utilsService.translateHabitat(species.habitat.name),
-              evolutionStage: evolutionStage
+              evolutionStage: evolutionStage,
+              image: details.sprites.front_default
             };
           })
         );

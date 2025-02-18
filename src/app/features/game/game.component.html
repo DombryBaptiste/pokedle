@@ -1,18 +1,28 @@
-<mat-form-field>
-  <input type="text" matInput [formControl]="pokemonControl" [matAutocomplete]="auto" placeholder="Tape le nom">
-  <button matSuffix mat-icon-button>
-    <mat-icon>play_arrow</mat-icon>
-  </button>
-  <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
-    @for(pokemon of filteredListPokemon | async; track pokemon.id) {
-      <mat-option [value]="pokemon.name">
-        <div class="options">
-          <img class="img-pkm" [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.id + '.png'">
-          <span>{{ pokemon.name }}</span>
-        </div>
-      </mat-option>
+
+<div class="game">
+  <div class="text-input-container">
+    <mat-form-field>
+      <input class="pokemon-input" type="text" matInput [formControl]="pokemonControl" [matAutocomplete]="auto" placeholder="Tape le nom">
+      <button matSuffix mat-icon-button>
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)="onPokemonSelected($event)">
+        @for(pokemon of filteredListPokemon | async; track pokemon.id) {
+          <mat-option [value]="pokemon.name">
+            <div class="options">
+              <img class="img-pkm" [src]="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.id + '.png'">
+              <span>{{ pokemon.name }}</span>
+            </div>
+          </mat-option>
+        }
+      </mat-autocomplete>
+    </mat-form-field>
+  </div>
+  <div class="pokemon-details-container">
+    @for(pokemon of listPokemonSelected; track pokemon.id) {
+      <app-pokemon-detail class="pokemon-detail" [pokemon]="pokemon"></app-pokemon-detail>
     }
-  </mat-autocomplete>
-</mat-form-field>
+  </div>
+</div>
 
 
