@@ -49,12 +49,16 @@ export class GameComponent implements OnInit {
     this.pokemonService.getPokemonById(pokemonSelected.id).subscribe({
       next: (pokemon: PokemonDetails) => {
         this.listPokemonSelected.push(pokemon);
+        this.pokemonControl.reset();
       }
     });
     this.listPokemon = this.listPokemon.filter(pokemon => pokemon.id !== pokemonSelected.id);
   }
 
   private filterPokemons(value: string): Pokemon[] {
+    if(!value) {
+      return [];
+    }
     const filterValue = value.toLowerCase();
     return this.listPokemon.filter(pokemon => pokemon.name.toLowerCase().startsWith(filterValue));
   }

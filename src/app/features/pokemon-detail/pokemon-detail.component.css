@@ -17,6 +17,7 @@
   font-size: 1.2rem;
   position: relative;
   color: black;
+  text-align: center;
 }
 
 .down::before {
