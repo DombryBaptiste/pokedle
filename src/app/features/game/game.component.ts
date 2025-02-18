@@ -56,10 +56,14 @@ export class GameComponent implements OnInit {
   }
 
   private filterPokemons(value: string): Pokemon[] {
-    if(!value) {
+    if (!value) {
       return [];
     }
-    const filterValue = value.toLowerCase();
-    return this.listPokemon.filter(pokemon => pokemon.name.toLowerCase().startsWith(filterValue));
+    const normalizeText = (text: string) =>
+      text.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+    const filterValue = normalizeText(value);
+
+    return this.listPokemon.filter(pokemon => normalizeText(pokemon.name).startsWith(filterValue));
   }
 }
