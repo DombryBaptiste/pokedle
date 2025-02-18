@@ -1,5 +1,3 @@
-import { PokemonType } from "./pokemon-type";
-
 export interface PokemonDetails {
   name: string;
   id: number;
