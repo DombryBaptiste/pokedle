@@ -48,7 +48,7 @@ export class GameComponent implements OnInit {
     }
     this.pokemonService.getPokemonById(pokemonSelected.id).subscribe({
       next: (pokemon: PokemonDetails) => {
-        this.listPokemonSelected.push(pokemon);
+        this.listPokemonSelected.unshift(pokemon);
         this.pokemonControl.reset();
       }
     });
