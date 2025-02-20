@@ -28,3 +28,15 @@ mat-form-field {
   width: 20%;
 }
 
+.slider-container {
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+  gap: 10px
+}
+
+.slide-toggle {
+  --mat-sys-body-medium-font: 'VCR OSD Mono', monospace;
+  --mat-sys-body-medium-weight: bold;
+}
+

@@ -1,5 +1,10 @@
 
 <div class="game">
+  <div class="slider-container">
+    @for(gen of listGeneration; track gen.name) {
+      <mat-slide-toggle class="slide-toggle" (change)="toggleChange(gen.name, $event)">{{ gen.name }}</mat-slide-toggle>
+    }
+  </div>
   <div class="text-input-container">
     <mat-form-field>
       <input class="pokemon-input" type="text" matInput [formControl]="pokemonControl" [matAutocomplete]="auto" placeholder="Tape le nom">
