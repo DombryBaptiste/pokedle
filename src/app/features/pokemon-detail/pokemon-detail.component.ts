@@ -30,10 +30,6 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getColor(key: keyof PokemonDetails, pokemon: PokemonDetails): string {
-    if(pokemon[key] === this.pokemonToGuess()[key]) {
-      return "green"
-    } else {
-      return "red"
-    }
+    return pokemon[key] == this.pokemonToGuess()[key] ? "green" : "red";
   }
 }

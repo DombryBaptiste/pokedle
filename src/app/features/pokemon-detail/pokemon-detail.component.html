@@ -17,7 +17,7 @@
         @for(pokemon of pokemonsSelected; track pokemon.id) {
           <tr>
             <td>
-              <img [src]="pokemon.image">
+              <img [src]="pokemon.image" alt="{{ pokemon.name }}">
             </td>
             <td>
               <div class="pokemon-trait"  [ngClass]="getColor('type1', pokemon)">
