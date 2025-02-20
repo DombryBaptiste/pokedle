@@ -55,7 +55,7 @@ export class UtilsService {
     const habitatTranslation: { [key:string]: string } = {
       cave: "Grottes", forest: "Forets", grassland: "Champs",
       mountain: "Montagne", rare: "Rare", "rough-terrain": "Milieux Hostiles",
-      sea: "Mers", urban: "Urbains", "water-edge": "Marécages"
+      sea: "Mers", urban: "Urbains", "waters-edge": "Marécage"
     }
 
     return habitatTranslation[habitat] || habitat
