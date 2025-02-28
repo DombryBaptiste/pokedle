@@ -119,7 +119,7 @@ export class PokemonService {
     let evolutionDetails = evolutionChain.chain;
 
     while(evolutionDetails) {
-      if (evolutionDetails.evolves_to.length === 0) {
+      if (evolutionDetails.evolves_to.length === 0 || evolutionDetails.species.name == pokemonName) {
         return currentStage;
       }
       evolutionDetails = evolutionDetails.evolves_to[0];
